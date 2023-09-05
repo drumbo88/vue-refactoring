@@ -1,0 +1,20 @@
+<template>
+    <div class="container">
+        <div class="auxbar">
+            <AuxBar />
+        </div>
+        <div class="main-content-container">
+            <div class="menu">
+                <MenuSidebar />
+            </div>
+            <div class="main-content">
+                <h1>My Home Content</h1>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script lang="ts" setup>
+import MenuSidebar from '@/components/MenuSidebar.vue'
+import Auxbar from '@/components/AuxBar.vue'
+</script>
