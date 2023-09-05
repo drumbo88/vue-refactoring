@@ -11,17 +11,17 @@ const routes: Array<RouteRecordRaw> = [
         component: HomeView,
     },
     {
-        path: '/',
+        path: '/about',
         name: 'about',
         component: AboutView,
     },
     {
-        path: '/',
+        path: '/services',
         name: 'services',
         component: ServiceView,
     },
     {
-        path: '/',
+        path: '/contact',
         name: 'contact',
         component: ContactView,
     },

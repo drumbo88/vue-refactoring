@@ -16,5 +16,5 @@
 
 <script lang="ts" setup>
 import MenuSidebar from '@/components/MenuSidebar.vue'
-import Auxbar from '@/components/AuxBar.vue'
+import AuxBar from '@/components/AuxBar.vue'
 </script>
