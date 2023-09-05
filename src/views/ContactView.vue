@@ -1,20 +1,9 @@
 <template>
-    <div class="container">
-        <div class="auxbar">
-            <AuxBar />
-        </div>
-        <div class="main-content-container">
-            <div class="menu">
-                <MenuSidebar />
-            </div>
-            <div class="main-content">
-                <h1>My Contact Content</h1>
-            </div>
-        </div>
-    </div>
+    <MainLayout>
+        <h1>Contact Section</h1>
+    </MainLayout>
 </template>
 
 <script lang="ts" setup>
-import MenuSidebar from '@/components/MenuSidebar.vue'
-import AuxBar from '@/components/AuxBar.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
 </script>
