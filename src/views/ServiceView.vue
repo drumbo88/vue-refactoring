@@ -12,8 +12,9 @@
 </template>
 
 <script lang="ts" setup>
+import { IService } from '@/types'
 import MainLayout from '@/layouts/MainLayout.vue'
-import { defineAsyncComponent, ref } from 'vue';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
 
 const ListLayout = defineAsyncComponent(() => import('@/layouts/ListLayout.vue'))
 const TableLayout = defineAsyncComponent(() => import('@/layouts/TableLayout.vue'))
@@ -29,34 +30,35 @@ const handleSearch = () => {
 }
 const layout = ref(ListLayout)
 const handleLayout = (cmp: Layout) => layout.value = cmp
-const services = ref([
-    {
-        name: 'Docker',
-        clients: 10,
-        type: 'remote'
-    },
-    {
-        name: 'Vue',
-        clients: 12,
-        type: 'on-site'
-    },
-    {
-        name: 'React',
-        clients: 3,
-        type: 'remote'
-    },
-    {
-        name: 'Javascript',
-        clients: 5,
-        type: 'hybrid'
-    },
-    {
-        name: 'Typescript',
-        clients: 5,
-        type: 'hybrid'
-    },
-])
 
-const filteredServices = ref(services.value)
+const services = ref<IService[]>([])
+const filteredServices = ref<IService[]>([])
 
+onMounted(() => {
+    services.value = [
+        {
+            name: 'Docker',
+            clients: 10,
+            type: 'remote'
+        },{
+            name: 'Vue',
+            clients: 12,
+            type: 'on-site'
+        },{
+            name: 'React',
+            clients: 3,
+            type: 'remote'
+        },{
+            name: 'Javascript',
+            clients: 5,
+            type: 'hybrid'
+        },{
+            name: 'Typescript',
+            clients: 5,
+            type: 'hybrid'
+        },
+    ]
+    //filteredServices.value = services.value
+    handleSearch()
+})
 </script>
