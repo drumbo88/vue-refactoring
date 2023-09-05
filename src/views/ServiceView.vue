@@ -1,12 +1,13 @@
 <template>
     <MainLayout>
         <h1>Listado de servicios</h1>
+        <input type="text" placeholder="Filtrar..." v-model="search" @keyup="handleSearch"/>
         <div>
             <button @click="handleLayout(ListLayout)">Ver en lista</button>
             <button @click="handleLayout(CardLayout)">Ver en tarjetas</button>
             <button @click="handleLayout(TableLayout)">Ver en tabla</button>
         </div>
-        <component :is="layout" :content="services"></component>
+        <component :is="layout" :content="filteredServices"></component>
     </MainLayout>
 </template>
 
@@ -17,29 +18,45 @@ import { defineAsyncComponent, ref } from 'vue';
 const ListLayout = defineAsyncComponent(() => import('@/layouts/ListLayout.vue'))
 const TableLayout = defineAsyncComponent(() => import('@/layouts/TableLayout.vue'))
 const CardLayout = defineAsyncComponent(() => import('@/layouts/CardLayout.vue'))
+type Layout = typeof ListLayout | typeof TableLayout | typeof CardLayout
 
+const search = ref('')
+const handleSearch = () => {
+    const searchLC = search.value.toLowerCase()
+    filteredServices.value = services.value.filter(
+        s => s.name.toLowerCase().includes(searchLC)
+    )
+}
 const layout = ref(ListLayout)
-const handleLayout = cmp => layout.value = cmp
+const handleLayout = (cmp: Layout) => layout.value = cmp
 const services = ref([
     {
-        name: 'Service 1',
+        name: 'Docker',
         clients: 10,
         type: 'remote'
     },
     {
-        name: 'Service 2',
+        name: 'Vue',
         clients: 12,
         type: 'on-site'
     },
     {
-        name: 'Service 3',
+        name: 'React',
         clients: 3,
         type: 'remote'
     },
     {
-        name: 'Service 4',
+        name: 'Javascript',
+        clients: 5,
+        type: 'hybrid'
+    },
+    {
+        name: 'Typescript',
         clients: 5,
         type: 'hybrid'
     },
 ])
+
+const filteredServices = ref(services.value)
+
 </script>
