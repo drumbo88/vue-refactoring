@@ -10,6 +10,9 @@
             <div class="main-content">
                 <slot></slot>
             </div>
+            <div class="aux-content">
+                <slot name="aux"></slot>
+            </div>
         </div>
     </div>
 </template>
