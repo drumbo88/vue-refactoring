@@ -9,4 +9,15 @@
 
 <script lang="ts" setup>
 import MainLayout from '@/layouts/MainLayout.vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const x = ref(0)
+const y = ref(0)
+
+function update(event: MouseEvent) {
+    x.value = event.pageX
+    y.value = event.pageY
+}
+onMounted(() => window.addEventListener('mousemove', update))
+onUnmounted(() => window.removeEventListener('mousemove', update))
 </script>
